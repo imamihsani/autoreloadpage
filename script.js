@@ -4,6 +4,7 @@
 <script>
   $(document).ready(function () {
     var reloadInterval;
+    var wasAutoReloadActive = false; // Menyimpan status auto-reload sebelum modal terbuka
 
     if (localStorage.getItem("autoReload") === "true") {
         enableAutoReload();
@@ -43,5 +44,20 @@
             .tooltip('dispose') 
             .tooltip(); 
     }
+
+     // Ketika modal dibuka, hentikan auto-reload jika sedang aktif
+      $('#exportindexModal').on('shown.bs.modal', function () {
+          if (localStorage.getItem("autoReload") === "true") {
+              wasAutoReloadActive = true;
+              disableAutoReload();
+          }
+      });
+
+      // Ketika modal ditutup, aktifkan kembali auto-reload jika sebelumnya aktif
+      $('#exportindexModal').on('hidden.bs.modal', function () {
+          if (wasAutoReloadActive) {
+              enableAutoReload();
+          }
+      });
   });
 </script>

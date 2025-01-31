@@ -1,3 +1,6 @@
+//html:
+// <button class="btn btn-sm btn-birumsa mr-1 autoreload" data-toggle="tooltip" title="Enable Otomatis Reload" data-placement="left"><i class="fa fa-arrows-rotate"></i></button>
+
 <script>
   $(document).ready(function () {
     var reloadInterval;
